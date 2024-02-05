@@ -1,0 +1,30 @@
+
+services:
+  java_app:
+    image: java_super_app:latest
+    build: .
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db_pg_14:5432/awesome
+      - SPRING_DATASOURCE_USERNAME=awesome_user
+      - SPRING_DATASOURCE_PASSWORD=awesome_password
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=none
+      - SPRING_DATASOURCE_INITIALIZATION_MODE=always
+      - SPRING_DATASOURCE_SCHEMA=classpath:schema.sql
+      - SPRING_DATASOURCE_DATA=classpath:data.sql
+      - SPRING_SQL_INIT_CONTINUE_ON_ERROR=true
+    ports:
+      - "8089:8089"
+    depends_on:
+      - db_pg_14
+  db_pg_14:
+    image: postgres:14
+    environment:
+      POSTGRES_DB: awesome
+      POSTGRES_USER: awesome_user
+      POSTGRES_PASSWORD: awesome_password
+    ports:
+      - 5432
+    volumes:
+      - db-data:/var/lib/postgresql/data
+volumes:
+  db-data:

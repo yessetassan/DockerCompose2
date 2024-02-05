@@ -12,7 +12,6 @@ CREATE TABLE teacher (
   birthday DATE
 );
 
--- Create join table for the many-to-many relationship between Student and Teacher
 CREATE TABLE student_teacher (
    student_id INT,
    teacher_id INT,

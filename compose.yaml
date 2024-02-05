@@ -1,9 +1,0 @@
-services:
-  db_pg_15:
-    image: postgres:15
-    environment:
-      POSTGRES_DB: cool
-      POSTGRES_USER: cool_user
-      POSTGRES_PASSWORD: cool_password
-    ports:
-      - 5432
